@@ -12,7 +12,11 @@
 #
 class Director < ApplicationRecord
 
-  has_many :filmography
+  has_many(:filmography, {
+    :class_name => "Movie",
+    :foreign_key => "director_id",
+    :dependent => :destroy
+  })
 
   def filmography
     key = self.id
